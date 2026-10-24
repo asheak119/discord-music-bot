@@ -39,3 +39,44 @@ A simple Discord bot that plays songs and playlists (including Spotify) in a voi
 - `/shuffle`: Shuffles the current queue.
 - `/stop`: Stops the player and clears the queue.
 - `/pause`: Pauses or resumes the currently playing track.
+
+## Deployment Guide (Docker / Server)
+
+The easiest way to deploy this bot to a server (like an Ubuntu VPS) is using Docker and Docker Compose.
+
+### Server Requirements
+1. A Linux server (e.g., Ubuntu, Debian)
+2. [Git installed](https://git-scm.com/download/linux)
+3. [Docker installed](https://docs.docker.com/engine/install/)
+4. [Docker Compose installed](https://docs.docker.com/compose/install/)
+
+### Deployment Steps
+1. **Clone the repository to your server**:
+   ```bash
+   git clone <YOUR_GITHUB_REPO_URL>
+   cd <YOUR_REPO_NAME>/discord-spotify-bot
+   ```
+
+2. **Set your environment variables**:
+   Create a `.env` file in the same directory as `docker-compose.yml` to securely store your token.
+   ```bash
+   echo "DISCORD_TOKEN=your_token_here" > .env
+   ```
+
+3. **Start the bot**:
+   Run the following command to build the Docker image and start the container in the background (`-d`).
+   ```bash
+   docker-compose up -d --build
+   ```
+
+4. **View logs (optional)**:
+   If you want to ensure the bot started successfully, you can view the logs:
+   ```bash
+   docker-compose logs -f
+   ```
+
+5. **Stop the bot**:
+   If you ever need to stop the bot:
+   ```bash
+   docker-compose down
+   ```

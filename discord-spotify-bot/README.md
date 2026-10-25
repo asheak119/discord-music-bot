@@ -21,7 +21,7 @@ If you are getting a "cannot recognize a voice server" error or the bot isn't re
    - Connect
    - Speak
 5. Copy the generated URL at the bottom and paste it into your browser to invite the bot.
-*(Alternatively, simply use this URL replacing `YOUR_CLIENT_ID` with your Application ID: `https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=3148800&integration_type=0&scope=bot+applications.commands`)*
+*(Alternatively, simply use this URL replacing `YOUR_CLIENT_ID` with your Application ID: `https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=3148800&scope=bot%20applications.commands`)*
 
 ## Installation
 

@@ -97,7 +97,8 @@ client.on('interactionCreate', async interaction => {
 
         await interaction.deferReply();
         try {
-            await player.voiceUtils.join(channel);
+            const queue = player.nodes.create(interaction.guildId);
+            await queue.connect(channel);
             return interaction.followUp('Joined the voice channel!');
         } catch (e) {
             return interaction.followUp('Failed to join voice channel.');
@@ -111,7 +112,7 @@ client.on('interactionCreate', async interaction => {
             queue.delete();
         } else {
             try {
-                player.voiceUtils.disconnect(interaction.guildId);
+                player.nodes.delete(interaction.guildId);
             } catch (e) {}
         }
         return interaction.followUp('Left the voice channel!');

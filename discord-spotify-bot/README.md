@@ -7,6 +7,22 @@ A simple Discord bot that plays songs and playlists (including Spotify) in a voi
 - Node.js 16.9.0 or higher
 - A Discord Bot Token (Create an application at [Discord Developer Portal](https://discord.com/developers/applications) and get the bot token).
 
+## Inviting the Bot to Your Server (Fixing Permissions)
+
+If you are getting a "cannot recognize a voice server" error or the bot isn't responding, it is likely missing permissions on your server.
+
+**To invite the bot correctly:**
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and select your application.
+2. In the sidebar, go to **OAuth2 -> URL Generator**.
+3. Under **SCOPES**, check `bot` AND `applications.commands`.
+4. Under **BOT PERMISSIONS**, check:
+   - Send Messages
+   - View Channels
+   - Connect
+   - Speak
+5. Copy the generated URL at the bottom and paste it into your browser to invite the bot.
+*(Alternatively, simply use this URL replacing `YOUR_CLIENT_ID` with your Application ID: `https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=3148800&integration_type=0&scope=bot+applications.commands`)*
+
 ## Installation
 
 1. Install dependencies:

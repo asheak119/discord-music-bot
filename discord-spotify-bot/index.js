@@ -37,6 +37,14 @@ player.events.on('playerError', (queue, error) => {
 
 const commands = [
     {
+        name: 'join',
+        description: 'Join the voice channel',
+    },
+    {
+        name: 'leave',
+        description: 'Leave the voice channel',
+    },
+    {
         name: 'play',
         description: 'Play a song or playlist from Spotify, YouTube, etc.',
         options: [
@@ -83,6 +91,32 @@ client.on('interactionCreate', async interaction => {
 
     const { commandName } = interaction;
 
+    if (commandName === 'join') {
+        const channel = interaction.member.voice.channel;
+        if (!channel) return interaction.reply({ content: 'You are not connected to a voice channel!', ephemeral: true });
+
+        await interaction.deferReply();
+        try {
+            await player.voiceUtils.join(channel);
+            return interaction.followUp('Joined the voice channel!');
+        } catch (e) {
+            return interaction.followUp('Failed to join voice channel.');
+        }
+    }
+
+    if (commandName === 'leave') {
+        await interaction.deferReply();
+        const queue = player.nodes.get(interaction.guildId);
+        if (queue) {
+            queue.delete();
+        } else {
+            try {
+                player.voiceUtils.disconnect(interaction.guildId);
+            } catch (e) {}
+        }
+        return interaction.followUp('Left the voice channel!');
+    }
+
     if (commandName === 'play') {
         const query = interaction.options.getString('query');
         const channel = interaction.member.voice.channel;
@@ -96,7 +130,10 @@ client.on('interactionCreate', async interaction => {
         try {
             const { track } = await player.play(channel, query, {
                 nodeOptions: {
-                    metadata: interaction
+                    metadata: interaction,
+                    leaveOnEmpty: false,
+                    leaveOnEnd: false,
+                    leaveOnStop: true
                 }
             });
 

@@ -35,6 +35,8 @@ A simple Discord bot that plays songs and playlists (including Spotify) in a voi
    ```
 
 ## Commands
+- `/join`: Make the bot join your voice channel.
+- `/leave`: Make the bot leave your voice channel.
 - `/play <query>`: Play a song or playlist (accepts Spotify URLs, YouTube URLs, or search terms).
 - `/shuffle`: Shuffles the current queue.
 - `/stop`: Stops the player and clears the queue.
